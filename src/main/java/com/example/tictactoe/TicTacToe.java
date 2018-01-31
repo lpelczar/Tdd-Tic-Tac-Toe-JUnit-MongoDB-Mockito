@@ -25,4 +25,8 @@ public class TicTacToe {
             throw new RuntimeException(message);
         }
     }
+
+    public char nextPlayer() {
+        return 'X';
+    }
 }
