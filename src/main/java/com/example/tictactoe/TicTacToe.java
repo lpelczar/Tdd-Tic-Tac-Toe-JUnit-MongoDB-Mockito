@@ -12,7 +12,19 @@ public class TicTacToe {
         checkAxis(row, "Y value is outside the board!");
         setField(column, row);
         lastPlayer = nextPlayer();
-        return "No winner";
+        return checkWin();
+    }
+
+    private String checkWin() {
+        String winner = "No winner";
+        for (int index = 0; index < 3; index++) {
+            if (board[0][index] == lastPlayer &&
+                board[1][index] == lastPlayer &&
+                board[2][index] == lastPlayer) {
+                return lastPlayer + " is the Winner";
+            }
+        }
+        return winner;
     }
 
     private void setField(int column, int row) {
