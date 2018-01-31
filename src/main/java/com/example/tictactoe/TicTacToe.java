@@ -13,7 +13,7 @@ public class TicTacToe {
         checkAxis(row, "Y value is outside the board!");
         lastPlayer = nextPlayer();
         setField(column, row, lastPlayer);
-        if (isWinner()) {
+        if (isWinner(column, row)) {
             return lastPlayer + " is the Winner";
         } else if (isDraw()) {
             return "It is a draw";
@@ -33,18 +33,19 @@ public class TicTacToe {
         return true;
     }
 
-    private boolean isWinner() {
+    private boolean isWinner(int column, int row) {
         int playerTotal = lastPlayer * SIZE;
-        char diagonal1 = '\0';
-        char diagonal2 = '\0';
+        char horizontal, vertical, diagonal1, diagonal2;
+        horizontal = vertical = diagonal1 = diagonal2 = '\0';
         for (int i = 0; i < SIZE; i++) {
+            horizontal += board[i][row - 1];
+            vertical += board[column - 1][i];
             diagonal1 += board[i][i];
             diagonal2 += board[i][SIZE - i - 1];
-            if (board[0][i] + board[1][i] + board[2][i] == playerTotal ||
-                board[i][0] + board[i][1] + board[i][2] == playerTotal) {
-                return true;
-            }
-            if (diagonal1 == playerTotal || diagonal2 == playerTotal) {
+            if (horizontal == playerTotal ||
+                vertical == playerTotal ||
+                diagonal1 == playerTotal ||
+                diagonal2 == playerTotal) {
                 return true;
             }
         }
