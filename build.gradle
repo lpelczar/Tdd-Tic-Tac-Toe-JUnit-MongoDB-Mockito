@@ -2,6 +2,7 @@ group 'com.example.tdd'
 version '1.0'
 
 apply plugin: 'java'
+apply plugin: 'jacoco'
 
 sourceCompatibility = 1.8
 
