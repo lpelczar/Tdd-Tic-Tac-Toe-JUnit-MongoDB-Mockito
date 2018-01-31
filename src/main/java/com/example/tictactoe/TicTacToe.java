@@ -5,11 +5,13 @@ public class TicTacToe {
     private Character[][] board = {{'\0', '\0', '\0'},
                                    {'\0', '\0', '\0'},
                                    {'\0', '\0', '\0'}};
+    private char lastPlayer = '\0';
 
     public void play(int column, int row) {
         checkAxis(column, "X value is outside the board!");
         checkAxis(row, "Y value is outside the board!");
         setField(column, row);
+        lastPlayer = nextPlayer();
     }
 
     private void setField(int column, int row) {
@@ -27,6 +29,9 @@ public class TicTacToe {
     }
 
     public char nextPlayer() {
+        if (lastPlayer == 'X') {
+            return 'O';
+        }
         return 'X';
     }
 }
