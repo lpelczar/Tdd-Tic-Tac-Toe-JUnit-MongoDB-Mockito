@@ -26,7 +26,8 @@ public class TicTacToe {
                 board[i][0] + board[i][1] + board[i][2] == playerTotal) {
                 return true;
             }
-        if (board[0][0] + board[1][1] + board[2][2] == playerTotal) return true;
+        if (board[0][0] + board[1][1] + board[2][2] == playerTotal ||
+            board[2][0] + board[1][1] + board[0][2] == playerTotal) return true;
         return false;
     }
 
