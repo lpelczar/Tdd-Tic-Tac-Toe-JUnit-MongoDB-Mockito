@@ -2,6 +2,7 @@ package com.example.tictactoe;
 
 public class TicTacToe {
 
+    private static final int SIZE = 3;
     private Character[][] board = {{'\0', '\0', '\0'},
                                    {'\0', '\0', '\0'},
                                    {'\0', '\0', '\0'}};
@@ -12,19 +13,18 @@ public class TicTacToe {
         checkAxis(row, "Y value is outside the board!");
         lastPlayer = nextPlayer();
         setField(column, row, lastPlayer);
-        return checkWin();
+        if (isWinner()) {
+            return lastPlayer + " is the Winner";
+        }
+        return "No winner";
     }
 
-    private String checkWin() {
-        String winner = "No winner";
-        for (int index = 0; index < 3; index++) {
-            if (board[0][index] == lastPlayer &&
-                board[1][index] == lastPlayer &&
-                board[2][index] == lastPlayer) {
-                return lastPlayer + " is the Winner";
+    private boolean isWinner() {
+        for (int i = 0; i < SIZE; i++)
+            if (board[0][i] + board[1][i] + board[2][i] == (lastPlayer * SIZE)) {
+                return true;
             }
-        }
-        return winner;
+        return false;
     }
 
     private void setField(int column, int row, char lastPlayer) {
