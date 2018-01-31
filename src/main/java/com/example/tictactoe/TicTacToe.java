@@ -7,11 +7,12 @@ public class TicTacToe {
                                    {'\0', '\0', '\0'}};
     private char lastPlayer = '\0';
 
-    public void play(int column, int row) {
+    public String play(int column, int row) {
         checkAxis(column, "X value is outside the board!");
         checkAxis(row, "Y value is outside the board!");
         setField(column, row);
         lastPlayer = nextPlayer();
+        return "No winner";
     }
 
     private void setField(int column, int row) {
