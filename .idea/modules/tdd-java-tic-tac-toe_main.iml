@@ -9,5 +9,11 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Gradle: org.jongo:jongo:1.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.mongodb:mongo-java-driver:2.14.3" level="project" />
+    <orderEntry type="library" name="Gradle: com.fasterxml.jackson.core:jackson-databind:2.4.1" level="project" />
+    <orderEntry type="library" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.4.1" level="project" />
+    <orderEntry type="library" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.4.1" level="project" />
+    <orderEntry type="library" name="Gradle: de.undercouch:bson4jackson:2.4.0" level="project" />
   </component>
 </module>
