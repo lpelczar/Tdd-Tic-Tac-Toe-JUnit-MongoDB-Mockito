@@ -19,4 +19,8 @@ public class TicTacToeCollection {
         DB db = new MongoClient().getDB("tic-tac-toe");
         mongoCollection = new Jongo(db).getCollection("game");
     }
+
+    public void saveMove(TicTacToeBean bean) {
+        getMongoCollection().save(bean);
+    }
 }
