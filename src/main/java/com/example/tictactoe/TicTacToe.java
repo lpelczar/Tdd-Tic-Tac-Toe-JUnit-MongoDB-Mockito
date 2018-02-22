@@ -21,10 +21,12 @@ public class TicTacToe {
 
     public TicTacToe() throws UnknownHostException {
         this(new TicTacToeCollection());
+        this.ticTacToeCollection.drop();
     }
 
     protected TicTacToe(TicTacToeCollection collection) {
         ticTacToeCollection = collection;
+        this.ticTacToeCollection.drop();
     }
 
     public String play(int column, int row) {
