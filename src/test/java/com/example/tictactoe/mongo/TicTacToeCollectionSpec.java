@@ -56,4 +56,11 @@ public class TicTacToeCollectionSpec {
         doReturn(mongoCollection).when(collection).getMongoCollection();
         assertFalse(collection.saveMove(bean));
     }
+
+    @Test
+    public void whenDropThenInvokeMongoCollectionDrop() {
+        doReturn(mongoCollection).when(collection).getMongoCollection();
+        collection.drop();
+        verify(mongoCollection, times(1)).drop();
+    }
 }
