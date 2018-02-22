@@ -144,4 +144,9 @@ public class TicTacToeSpec {
         ticTacToe.play(move2.getX(), move2.getY());
         verify(collection, times(1)).saveMove(move2);
     }
+
+    @Test
+    public void whenTicTacToeInstantiatedThenDrop() {
+        verify(collection, times(1)).drop();
+    }
 }
