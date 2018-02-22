@@ -16,3 +16,11 @@ dependencies {
     compile 'org.jongo:jongo:1.1'
     compile 'org.mongodb:mongo-java-driver:2.+'
 }
+
+test {
+    include '**/*Spec.class'
+}
+
+task testInteg(type: Test) {
+    include '**/*Integ.class'
+}
