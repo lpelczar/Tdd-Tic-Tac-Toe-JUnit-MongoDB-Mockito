@@ -7,6 +7,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import static org.junit.Assert.*;
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -21,6 +22,7 @@ public class TicTacToeSpec {
     @Before
     public final void before() {
         collection = mock(TicTacToeCollection.class);
+        doReturn(true).when(collection).saveMove(any(TicTacToeBean.class));
         ticTacToe = new TicTacToe(collection);
     }
 
@@ -125,5 +127,13 @@ public class TicTacToeSpec {
         TicTacToeBean move = new TicTacToeBean(1, 1, 3, 'X');
         ticTacToe.play(move.getX(), move.getY());
         verify(collection).saveMove(move);
+    }
+
+    @Test
+    public void whenPlayAndSaveReturnsFalseThenThrowException() {
+        doReturn(false).when(collection).saveMove(any(TicTacToeBean.class));
+        TicTacToeBean move = new TicTacToeBean(1, 1, 3, 'X');
+        exception.expect(RuntimeException.class);
+        ticTacToe.play(move.getX(), move.getY());
     }
 }
