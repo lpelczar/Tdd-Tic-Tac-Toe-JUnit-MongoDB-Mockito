@@ -149,4 +149,11 @@ public class TicTacToeSpec {
     public void whenTicTacToeInstantiatedThenDrop() {
         verify(collection, times(1)).drop();
     }
+
+    @Test
+    public void whenDropReturnsFalseThenRuntimeException() {
+        doReturn(false).when(collection).drop();
+        exception.expect(RuntimeException.class);
+        new TicTacToe(collection);
+    }
 }
