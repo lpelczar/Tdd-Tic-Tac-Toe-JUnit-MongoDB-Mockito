@@ -1,5 +1,6 @@
 package com.example.tictactoe;
 
+import com.example.tictactoe.mongo.TicTacToeBean;
 import com.example.tictactoe.mongo.TicTacToeCollection;
 import org.junit.Before;
 import org.junit.Rule;
@@ -8,6 +9,7 @@ import org.junit.rules.ExpectedException;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 public class TicTacToeSpec {
 
@@ -116,5 +118,12 @@ public class TicTacToeSpec {
     @Test
     public void whenInstantiatedThenSetCollection() {
         assertNotNull(ticTacToe.getTicTacToeCollection());
+    }
+
+    @Test
+    public void whenPlayThenSaveMoveIsInvoked() {
+        TicTacToeBean move = new TicTacToeBean(1, 1, 3, 'X');
+        ticTacToe.play(move.getX(), move.getY());
+        verify(collection).saveMove(move);
     }
 }
