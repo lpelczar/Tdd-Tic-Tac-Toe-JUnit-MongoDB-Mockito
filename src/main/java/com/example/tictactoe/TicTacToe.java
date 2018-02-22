@@ -7,6 +7,7 @@ import java.net.UnknownHostException;
 
 public class TicTacToe {
 
+    private int turn = 0;
     private static final int SIZE = 3;
     private Character[][] board = {{'\0', '\0', '\0'},
                                    {'\0', '\0', '\0'},
@@ -30,7 +31,7 @@ public class TicTacToe {
         checkAxis(column, "X value is outside the board!");
         checkAxis(row, "Y value is outside the board!");
         lastPlayer = nextPlayer();
-        setField(new TicTacToeBean(1, column, row, lastPlayer));
+        setField(new TicTacToeBean(++turn, column, row, lastPlayer));
         if (isWinner(column, row)) {
             return lastPlayer + " is the Winner";
         } else if (isDraw()) {
