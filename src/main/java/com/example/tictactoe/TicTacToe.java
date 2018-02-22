@@ -21,12 +21,16 @@ public class TicTacToe {
 
     public TicTacToe() throws UnknownHostException {
         this(new TicTacToeCollection());
-        this.ticTacToeCollection.drop();
+        if (!this.ticTacToeCollection.drop()) {
+            throw new RuntimeException("Error clearing collection");
+        }
     }
 
     protected TicTacToe(TicTacToeCollection collection) {
         ticTacToeCollection = collection;
-        this.ticTacToeCollection.drop();
+        if (!this.ticTacToeCollection.drop()) {
+            throw new RuntimeException("Error clearing collection");
+        }
     }
 
     public String play(int column, int row) {

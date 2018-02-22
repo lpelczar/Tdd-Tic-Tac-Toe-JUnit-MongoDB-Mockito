@@ -20,6 +20,7 @@ public class TicTacToeSpec {
     @Before
     public final void before() {
         collection = mock(TicTacToeCollection.class);
+        doReturn(true).when(collection).drop();
         doReturn(true).when(collection).saveMove(any(TicTacToeBean.class));
         ticTacToe = new TicTacToe(collection);
     }
