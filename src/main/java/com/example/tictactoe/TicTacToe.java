@@ -1,5 +1,6 @@
 package com.example.tictactoe;
 
+import com.example.tictactoe.mongo.TicTacToeBean;
 import com.example.tictactoe.mongo.TicTacToeCollection;
 
 import java.net.UnknownHostException;
@@ -29,7 +30,7 @@ public class TicTacToe {
         checkAxis(column, "X value is outside the board!");
         checkAxis(row, "Y value is outside the board!");
         lastPlayer = nextPlayer();
-        setField(column, row, lastPlayer);
+        setField(new TicTacToeBean(1, column, row, lastPlayer));
         if (isWinner(column, row)) {
             return lastPlayer + " is the Winner";
         } else if (isDraw()) {
@@ -69,11 +70,12 @@ public class TicTacToe {
         return false;
     }
 
-    private void setField(int column, int row, char lastPlayer) {
-        if (board[column - 1][row - 1] != '\0') {
+    private void setField(TicTacToeBean bean) {
+        if (board[bean.getX() - 1][bean.getY() - 1] != '\0') {
             throw new RuntimeException("Field is occupied!");
         } else {
-            board[column - 1][row - 1] = lastPlayer;
+            board[bean.getX() - 1][bean.getY() - 1] = lastPlayer;
+            getTicTacToeCollection().saveMove(bean);
         }
     }
 
