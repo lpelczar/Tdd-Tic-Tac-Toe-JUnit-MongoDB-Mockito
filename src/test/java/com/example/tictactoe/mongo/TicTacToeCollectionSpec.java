@@ -1,5 +1,6 @@
 package com.example.tictactoe.mongo;
 
+import com.mongodb.MongoException;
 import org.jongo.MongoCollection;
 import org.junit.Before;
 import org.junit.Test;
@@ -7,6 +8,7 @@ import org.junit.Test;
 import java.net.UnknownHostException;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
@@ -44,5 +46,14 @@ public class TicTacToeCollectionSpec {
     public void whenSaveMoveThenReturnTrue() {
         doReturn(mongoCollection).when(collection).getMongoCollection();
         assertTrue(collection.saveMove(bean));
+    }
+
+    @Test
+    public void givenExceptionSaveMoveThenReturnFalse() {
+        doThrow(new MongoException("foo"))
+                .when(mongoCollection)
+                .save(any(TicTacToeBean.class));
+        doReturn(mongoCollection).when(collection).getMongoCollection();
+        assertFalse(collection.saveMove(bean));
     }
 }
