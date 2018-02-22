@@ -1,5 +1,9 @@
 package com.example.tictactoe;
 
+import com.example.tictactoe.mongo.TicTacToeCollection;
+
+import java.net.UnknownHostException;
+
 public class TicTacToe {
 
     private static final int SIZE = 3;
@@ -7,6 +11,19 @@ public class TicTacToe {
                                    {'\0', '\0', '\0'},
                                    {'\0', '\0', '\0'}};
     private char lastPlayer = '\0';
+    private TicTacToeCollection ticTacToeCollection;
+
+    protected TicTacToeCollection getTicTacToeCollection() {
+        return ticTacToeCollection;
+    }
+
+    public TicTacToe() throws UnknownHostException {
+        this(new TicTacToeCollection());
+    }
+
+    protected TicTacToe(TicTacToeCollection collection) {
+        ticTacToeCollection = collection;
+    }
 
     public String play(int column, int row) {
         checkAxis(column, "X value is outside the board!");

@@ -1,20 +1,25 @@
 package com.example.tictactoe;
 
+import com.example.tictactoe.mongo.TicTacToeCollection;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.mock;
 
 public class TicTacToeSpec {
 
     @Rule
     public ExpectedException exception = ExpectedException.none();
     private TicTacToe ticTacToe;
+    private TicTacToeCollection collection;
 
     @Before
     public final void before() {
-        ticTacToe = new TicTacToe();
+        collection = mock(TicTacToeCollection.class);
+        ticTacToe = new TicTacToe(collection);
     }
 
     @Test
