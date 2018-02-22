@@ -75,7 +75,9 @@ public class TicTacToe {
             throw new RuntimeException("Field is occupied!");
         } else {
             board[bean.getX() - 1][bean.getY() - 1] = lastPlayer;
-            getTicTacToeCollection().saveMove(bean);
+            if (!getTicTacToeCollection().saveMove(bean)) {
+                throw new RuntimeException("Error writing to database");
+            }
         }
     }
 
