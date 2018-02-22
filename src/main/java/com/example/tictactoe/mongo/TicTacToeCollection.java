@@ -28,4 +28,8 @@ public class TicTacToeCollection {
             return false;
         }
     }
+
+    public void drop() {
+        getMongoCollection().drop();
+    }
 }
