@@ -107,4 +107,9 @@ public class TicTacToeSpec {
         String actual = ticTacToe.play(3,2);
         assertEquals("It is a draw", actual);
     }
+
+    @Test
+    public void whenInstantiatedThenSetCollection() {
+        assertNotNull(ticTacToe.getTicTacToeCollection());
+    }
 }
