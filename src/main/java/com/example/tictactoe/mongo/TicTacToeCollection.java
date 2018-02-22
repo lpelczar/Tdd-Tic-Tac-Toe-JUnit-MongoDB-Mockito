@@ -30,7 +30,11 @@ public class TicTacToeCollection {
     }
 
     public boolean drop() {
-        getMongoCollection().drop();
-        return true;
+        try {
+            getMongoCollection().drop();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
